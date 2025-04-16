@@ -1,0 +1,348 @@
+   0  $accept : program $end
+
+   1  program : INT MAIN LPAREN RPAREN LBRACE stmt_list RBRACE
+
+   2  stmt_list : declaration for_loop return_stmt
+
+   3  declaration : INT IDENTIFIER ASSIGN NUMBER SEMICOLON
+
+   4  for_loop : FOR LPAREN INT IDENTIFIER ASSIGN NUMBER SEMICOLON IDENTIFIER LT NUMBER SEMICOLON IDENTIFIER PLUSPLUS RPAREN LBRACE assignment SEMICOLON RBRACE
+
+   5  assignment : IDENTIFIER ASSIGN IDENTIFIER PLUS IDENTIFIER
+
+   6  return_stmt : RETURN NUMBER SEMICOLON
+
+state 0
+	$accept : . program $end  (0)
+
+	INT  shift 1
+	.  error
+
+	program  goto 2
+
+
+state 1
+	program : INT . MAIN LPAREN RPAREN LBRACE stmt_list RBRACE  (1)
+
+	MAIN  shift 3
+	.  error
+
+
+state 2
+	$accept : program . $end  (0)
+
+	$end  accept
+
+
+state 3
+	program : INT MAIN . LPAREN RPAREN LBRACE stmt_list RBRACE  (1)
+
+	LPAREN  shift 4
+	.  error
+
+
+state 4
+	program : INT MAIN LPAREN . RPAREN LBRACE stmt_list RBRACE  (1)
+
+	RPAREN  shift 5
+	.  error
+
+
+state 5
+	program : INT MAIN LPAREN RPAREN . LBRACE stmt_list RBRACE  (1)
+
+	LBRACE  shift 6
+	.  error
+
+
+state 6
+	program : INT MAIN LPAREN RPAREN LBRACE . stmt_list RBRACE  (1)
+
+	INT  shift 7
+	.  error
+
+	stmt_list  goto 8
+	declaration  goto 9
+
+
+state 7
+	declaration : INT . IDENTIFIER ASSIGN NUMBER SEMICOLON  (3)
+
+	IDENTIFIER  shift 10
+	.  error
+
+
+state 8
+	program : INT MAIN LPAREN RPAREN LBRACE stmt_list . RBRACE  (1)
+
+	RBRACE  shift 11
+	.  error
+
+
+state 9
+	stmt_list : declaration . for_loop return_stmt  (2)
+
+	FOR  shift 12
+	.  error
+
+	for_loop  goto 13
+
+
+state 10
+	declaration : INT IDENTIFIER . ASSIGN NUMBER SEMICOLON  (3)
+
+	ASSIGN  shift 14
+	.  error
+
+
+state 11
+	program : INT MAIN LPAREN RPAREN LBRACE stmt_list RBRACE .  (1)
+
+	.  reduce 1
+
+
+state 12
+	for_loop : FOR . LPAREN INT IDENTIFIER ASSIGN NUMBER SEMICOLON IDENTIFIER LT NUMBER SEMICOLON IDENTIFIER PLUSPLUS RPAREN LBRACE assignment SEMICOLON RBRACE  (4)
+
+	LPAREN  shift 15
+	.  error
+
+
+state 13
+	stmt_list : declaration for_loop . return_stmt  (2)
+
+	RETURN  shift 16
+	.  error
+
+	return_stmt  goto 17
+
+
+state 14
+	declaration : INT IDENTIFIER ASSIGN . NUMBER SEMICOLON  (3)
+
+	NUMBER  shift 18
+	.  error
+
+
+state 15
+	for_loop : FOR LPAREN . INT IDENTIFIER ASSIGN NUMBER SEMICOLON IDENTIFIER LT NUMBER SEMICOLON IDENTIFIER PLUSPLUS RPAREN LBRACE assignment SEMICOLON RBRACE  (4)
+
+	INT  shift 19
+	.  error
+
+
+state 16
+	return_stmt : RETURN . NUMBER SEMICOLON  (6)
+
+	NUMBER  shift 20
+	.  error
+
+
+state 17
+	stmt_list : declaration for_loop return_stmt .  (2)
+
+	.  reduce 2
+
+
+state 18
+	declaration : INT IDENTIFIER ASSIGN NUMBER . SEMICOLON  (3)
+
+	SEMICOLON  shift 21
+	.  error
+
+
+state 19
+	for_loop : FOR LPAREN INT . IDENTIFIER ASSIGN NUMBER SEMICOLON IDENTIFIER LT NUMBER SEMICOLON IDENTIFIER PLUSPLUS RPAREN LBRACE assignment SEMICOLON RBRACE  (4)
+
+	IDENTIFIER  shift 22
+	.  error
+
+
+state 20
+	return_stmt : RETURN NUMBER . SEMICOLON  (6)
+
+	SEMICOLON  shift 23
+	.  error
+
+
+state 21
+	declaration : INT IDENTIFIER ASSIGN NUMBER SEMICOLON .  (3)
+
+	.  reduce 3
+
+
+state 22
+	for_loop : FOR LPAREN INT IDENTIFIER . ASSIGN NUMBER SEMICOLON IDENTIFIER LT NUMBER SEMICOLON IDENTIFIER PLUSPLUS RPAREN LBRACE assignment SEMICOLON RBRACE  (4)
+
+	ASSIGN  shift 24
+	.  error
+
+
+state 23
+	return_stmt : RETURN NUMBER SEMICOLON .  (6)
+
+	.  reduce 6
+
+
+state 24
+	for_loop : FOR LPAREN INT IDENTIFIER ASSIGN . NUMBER SEMICOLON IDENTIFIER LT NUMBER SEMICOLON IDENTIFIER PLUSPLUS RPAREN LBRACE assignment SEMICOLON RBRACE  (4)
+
+	NUMBER  shift 25
+	.  error
+
+
+state 25
+	for_loop : FOR LPAREN INT IDENTIFIER ASSIGN NUMBER . SEMICOLON IDENTIFIER LT NUMBER SEMICOLON IDENTIFIER PLUSPLUS RPAREN LBRACE assignment SEMICOLON RBRACE  (4)
+
+	SEMICOLON  shift 26
+	.  error
+
+
+state 26
+	for_loop : FOR LPAREN INT IDENTIFIER ASSIGN NUMBER SEMICOLON . IDENTIFIER LT NUMBER SEMICOLON IDENTIFIER PLUSPLUS RPAREN LBRACE assignment SEMICOLON RBRACE  (4)
+
+	IDENTIFIER  shift 27
+	.  error
+
+
+state 27
+	for_loop : FOR LPAREN INT IDENTIFIER ASSIGN NUMBER SEMICOLON IDENTIFIER . LT NUMBER SEMICOLON IDENTIFIER PLUSPLUS RPAREN LBRACE assignment SEMICOLON RBRACE  (4)
+
+	LT  shift 28
+	.  error
+
+
+state 28
+	for_loop : FOR LPAREN INT IDENTIFIER ASSIGN NUMBER SEMICOLON IDENTIFIER LT . NUMBER SEMICOLON IDENTIFIER PLUSPLUS RPAREN LBRACE assignment SEMICOLON RBRACE  (4)
+
+	NUMBER  shift 29
+	.  error
+
+
+state 29
+	for_loop : FOR LPAREN INT IDENTIFIER ASSIGN NUMBER SEMICOLON IDENTIFIER LT NUMBER . SEMICOLON IDENTIFIER PLUSPLUS RPAREN LBRACE assignment SEMICOLON RBRACE  (4)
+
+	SEMICOLON  shift 30
+	.  error
+
+
+state 30
+	for_loop : FOR LPAREN INT IDENTIFIER ASSIGN NUMBER SEMICOLON IDENTIFIER LT NUMBER SEMICOLON . IDENTIFIER PLUSPLUS RPAREN LBRACE assignment SEMICOLON RBRACE  (4)
+
+	IDENTIFIER  shift 31
+	.  error
+
+
+state 31
+	for_loop : FOR LPAREN INT IDENTIFIER ASSIGN NUMBER SEMICOLON IDENTIFIER LT NUMBER SEMICOLON IDENTIFIER . PLUSPLUS RPAREN LBRACE assignment SEMICOLON RBRACE  (4)
+
+	PLUSPLUS  shift 32
+	.  error
+
+
+state 32
+	for_loop : FOR LPAREN INT IDENTIFIER ASSIGN NUMBER SEMICOLON IDENTIFIER LT NUMBER SEMICOLON IDENTIFIER PLUSPLUS . RPAREN LBRACE assignment SEMICOLON RBRACE  (4)
+
+	RPAREN  shift 33
+	.  error
+
+
+state 33
+	for_loop : FOR LPAREN INT IDENTIFIER ASSIGN NUMBER SEMICOLON IDENTIFIER LT NUMBER SEMICOLON IDENTIFIER PLUSPLUS RPAREN . LBRACE assignment SEMICOLON RBRACE  (4)
+
+	LBRACE  shift 34
+	.  error
+
+
+state 34
+	for_loop : FOR LPAREN INT IDENTIFIER ASSIGN NUMBER SEMICOLON IDENTIFIER LT NUMBER SEMICOLON IDENTIFIER PLUSPLUS RPAREN LBRACE . assignment SEMICOLON RBRACE  (4)
+
+	IDENTIFIER  shift 35
+	.  error
+
+	assignment  goto 36
+
+
+state 35
+	assignment : IDENTIFIER . ASSIGN IDENTIFIER PLUS IDENTIFIER  (5)
+
+	ASSIGN  shift 37
+	.  error
+
+
+state 36
+	for_loop : FOR LPAREN INT IDENTIFIER ASSIGN NUMBER SEMICOLON IDENTIFIER LT NUMBER SEMICOLON IDENTIFIER PLUSPLUS RPAREN LBRACE assignment . SEMICOLON RBRACE  (4)
+
+	SEMICOLON  shift 38
+	.  error
+
+
+state 37
+	assignment : IDENTIFIER ASSIGN . IDENTIFIER PLUS IDENTIFIER  (5)
+
+	IDENTIFIER  shift 39
+	.  error
+
+
+state 38
+	for_loop : FOR LPAREN INT IDENTIFIER ASSIGN NUMBER SEMICOLON IDENTIFIER LT NUMBER SEMICOLON IDENTIFIER PLUSPLUS RPAREN LBRACE assignment SEMICOLON . RBRACE  (4)
+
+	RBRACE  shift 40
+	.  error
+
+
+state 39
+	assignment : IDENTIFIER ASSIGN IDENTIFIER . PLUS IDENTIFIER  (5)
+
+	PLUS  shift 41
+	.  error
+
+
+state 40
+	for_loop : FOR LPAREN INT IDENTIFIER ASSIGN NUMBER SEMICOLON IDENTIFIER LT NUMBER SEMICOLON IDENTIFIER PLUSPLUS RPAREN LBRACE assignment SEMICOLON RBRACE .  (4)
+
+	.  reduce 4
+
+
+state 41
+	assignment : IDENTIFIER ASSIGN IDENTIFIER PLUS . IDENTIFIER  (5)
+
+	IDENTIFIER  shift 42
+	.  error
+
+
+state 42
+	assignment : IDENTIFIER ASSIGN IDENTIFIER PLUS IDENTIFIER .  (5)
+
+	.  reduce 5
+
+
+17 terminals, 7 nonterminals
+7 grammar rules, 43 states
+
+grammar parser grammar
+symbol# value# symbol
+     0      0  $end
+     1    256  error
+     2    257  INT
+     3    258  MAIN
+     4    259  RETURN
+     5    260  FOR
+     6    261  IDENTIFIER
+     7    262  NUMBER
+     8    263  LPAREN
+     9    264  RPAREN
+    10    265  LBRACE
+    11    266  RBRACE
+    12    267  SEMICOLON
+    13    268  ASSIGN
+    14    269  LT
+    15    270  PLUS
+    16    271  PLUSPLUS
+    17    272  $accept
+    18    273  program
+    19    274  stmt_list
+    20    275  declaration
+    21    276  for_loop
+    22    277  return_stmt
+    23    278  assignment
